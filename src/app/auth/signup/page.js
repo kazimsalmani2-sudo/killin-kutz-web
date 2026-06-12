@@ -80,7 +80,7 @@ export default function SignupPage() {
     setErrorMsg('');
     setLoading(true);
     try {
-      signup(formData.name, formData.email, formData.password, formData.phone);
+      await signup(formData.name, formData.email, formData.password, formData.phone);
       const firstName = formData.name.split(' ')[0];
       setRegisteredName(firstName);
       setShowWelcome(true);

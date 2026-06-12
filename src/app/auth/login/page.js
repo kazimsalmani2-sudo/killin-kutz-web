@@ -60,7 +60,7 @@ export default function LoginPage() {
     setErrorMsg('');
     setLoading(true);
     try {
-      const loggedUser = login(formData.email, formData.password);
+      const loggedUser = await login(formData.email, formData.password);
       if (loggedUser) {
         if (loggedUser.role === 'admin') {
           router.push('/admin');
@@ -69,11 +69,7 @@ export default function LoginPage() {
         }
       }
     } catch (err) {
-      if (err.message === 'NO_ACCOUNT_FOUND') {
-        setErrorMsg('NO_ACCOUNT_FOUND');
-      } else {
-        setErrorMsg(err.message || 'Login failed. Please verify credentials.');
-      }
+      setErrorMsg(err.message || 'Login failed. Please verify credentials.');
       setLoading(false);
     }
   };
